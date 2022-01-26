@@ -120,7 +120,9 @@ class ClientController extends Controller
     public function cuoponForDay()
     {
         $query = Coupon::select('id', 'created_at')
+            ->orderBy('created_at', 'ASC')
             ->get()
+
             ->groupBy(function ($date) {
                 return Carbon::parse($date->created_at)->format('Y-m-d');
             });
