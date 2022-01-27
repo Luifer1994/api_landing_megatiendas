@@ -18,9 +18,9 @@ class UserController extends Controller
         );
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
-            return $validator->errors();
+            return response()->json($validator->errors(), 400);
         }
-        $user = User::whereEmail($request->email)->first();
+        $user = User::where('email', $request->email)->first();
 
         if ($user && Hash::check($request->password, $user->password)) {
             $token = $user->createToken('Laravel')->accessToken;
