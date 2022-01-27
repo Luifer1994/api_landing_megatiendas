@@ -51,4 +51,11 @@ class UserController extends Controller
             'message' => 'Hasta la vista Baby',
         ], 200);
     }
+
+    public function validateSesion()
+    {
+        if (Auth::check()) {
+            return true;
+        }
+    }
 }
