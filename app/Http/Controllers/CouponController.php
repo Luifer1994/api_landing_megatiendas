@@ -40,4 +40,20 @@ class CouponController extends Controller
             ->withCount('coupon')->orderBy('coupon_count', 'desc')->take(10)->get();
         return $return;
     }
+
+    public function export()
+    {
+        $coupon = Coupon::select(
+            'coupons.coupon',
+            'coupons.serie',
+            DB::raw("DATE_FORMAT(coupons.created_at,'%Y-%m-%d') as date"),
+            'clients.document',
+            'clients.name',
+            'clients.last_name',
+            'clients.phone',
+            'clients.email',
+            'clients.city'
+        )->join('clients', 'clients.id', 'coupons.client_id')->orderBy('clients.document')->get();
+        return $coupon;
+    }
 }
