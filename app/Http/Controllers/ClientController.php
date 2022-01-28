@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class ClientController extends Controller
 {
@@ -50,12 +51,12 @@ class ClientController extends Controller
             } else {
                 $newClient = new Client();
                 $newClient->document    = $request->document;
-                $newClient->name        = $request->name;
-                $newClient->last_name   = $request->last_name;
-                $newClient->phone       = $request->phone;
-                $newClient->email       = $request->email;
-                $newClient->city        = $request->city;
-                $newClient->direction   = $request->direction;
+                $newClient->name        = Str::upper($request->name);
+                $newClient->last_name   = Str::upper($request->last_name);
+                $newClient->phone       = Str::upper($request->phone);
+                $newClient->email       = Str::upper($request->email);
+                $newClient->city        = Str::upper($request->city);
+                $newClient->direction   = Str::upper($request->direction);
 
                 if ($newClient->save()) {
                     $client = Client::latest('id')->first();
