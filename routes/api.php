@@ -17,7 +17,7 @@ Route::get('/top-client-for-coupon', [CouponController::class, 'topClientNumberC
 
 
 Route::group(['middleware' => 'auth:api'], function () {
-    Route::get('/validate-sesion', [UserController::class, 'validateSesion']);
+    /*  Route::get('/validate-sesion', [UserController::class, 'validateSesion']); */
     Route::get('/logout', [UserController::class, 'logout']);
     Route::get('/list-coupon-client', [ClientController::class, 'listClientsCoupon']);
     Route::get('/detail-coupon-client/{id}', [ClientController::class, 'detailClientCoupon']);
