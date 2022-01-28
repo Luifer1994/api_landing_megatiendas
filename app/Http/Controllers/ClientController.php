@@ -16,13 +16,7 @@ class ClientController extends Controller
         $rules = array(
             'document'  => 'required',
             'coupon'    => 'required',
-            'serie'     => 'required',
-            'name'      => 'required',
-            'last_name' => 'required',
-            'phone'     => 'required',
-            'email'     => 'required',
-            'city'      => 'required',
-            'direction' => 'required'
+            'serie'     => 'required'
         );
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
