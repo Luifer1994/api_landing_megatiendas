@@ -25,7 +25,7 @@ class ClientController extends Controller
         }
         $client = Client::where('document', $request->document)->first();
 
-        $coupon = Coupon::where('coupon', $request->coupon)->first();
+        $coupon = Coupon::where('coupon', $request->coupon)->where('serie', $request->serie)->first();
         if ($coupon) {
             return response()->json([
                 'res' => false,
